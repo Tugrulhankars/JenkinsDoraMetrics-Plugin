@@ -1,0 +1,4 @@
+<?jelly escape-by-default='true'?>
+<div>
+    This plugin tracks and visualizes DORA Metrics (Deployment Frequency, Lead Time for Changes, Change Failure Rate, and Mean Time to Recovery) for individual Jenkins projects.
+</div>
