@@ -14,8 +14,20 @@
   <version>${revision}${changelist}</version>
   <packaging>hpi</packaging>
 
-  <name>TODO Plugin</name>
-  <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
+  <name>DORA Metrics Plugin</name>
+  <url>https://github.com/Tugrulhankars/JenkinsDoraMetrics-Plugin.git</url>
+  <developers>
+    <developer>
+      <id>karslitugrulhan</id>
+      <name>Tugrulhan Karsli</name>
+      <email>karslitugrulhan@gmail.com</email>
+      <url>https://github.com/Tugrulhankars</url>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>Europe/Istanbul</timezone>
+    </developer>
+  </developers>
   <licenses>
     <license>
       <name>MIT License</name>
