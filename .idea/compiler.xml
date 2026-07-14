@@ -6,13 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="JenkinsDoraMetrics" />
+        <module name="dorametrics" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="JenkinsDoraMetrics" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="JenkinsDoraMetrics" options="-parameters -proc:full" />
+      <module name="dorametrics" options="-parameters -proc:full" />
     </option>
   </component>
 </project>
