@@ -15,7 +15,7 @@
   <packaging>hpi</packaging>
 
   <name>DORA Metrics Plugin</name>
-  <url>https://github.com/Tugrulhankars/JenkinsDoraMetrics-Plugin.git</url>
+  <url>https://github.com/Tugrulhankars/JenkinsDoraMetrics-Plugin</url>
   <developers>
     <developer>
       <id>karslitugrulhan</id>
