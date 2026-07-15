@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>5.27</version>
+    <version>6.2152.ve00a_731c3ce9</version>
     <relativePath />
   </parent>
 
@@ -15,19 +15,7 @@
   <packaging>hpi</packaging>
 
   <name>DORA Metrics Plugin</name>
-  <url>https://github.com/Tugrulhankars/JenkinsDoraMetrics-Plugin</url>
-  <developers>
-    <developer>
-      <id>karslitugrulhan</id>
-      <name>Tugrulhan Karsli</name>
-      <email>karslitugrulhan@gmail.com</email>
-      <url>https://github.com/Tugrulhankars</url>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>Europe/Istanbul</timezone>
-    </developer>
-  </developers>
+  <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
   <licenses>
     <license>
       <name>MIT License</name>
@@ -46,20 +34,23 @@
     <changelist>-SNAPSHOT</changelist>
     <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
     <jenkins.baseline>2.516</jenkins.baseline>
-    <jenkins.version>${jenkins.baseline}.3</jenkins.version>
+    <jenkins.version>2.528.3</jenkins.version>
+    <changelist>999999-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
 
     <spotless.check.skip>false</spotless.check.skip>
     <ban-junit4-imports.skip>false</ban-junit4-imports.skip>
     <hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>
+    <ban-deprecated-stapler.skip>false</ban-deprecated-stapler.skip>
+    <ban-commons-lang-2.skip>false</ban-commons-lang-2.skip>
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-${jenkins.baseline}.x</artifactId>
-        <version>5577.vea_979d35b_b_ff</version>
+        <artifactId>bom-2.528.x</artifactId>
+        <version>6210.v69ea_fd8a_f010</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
