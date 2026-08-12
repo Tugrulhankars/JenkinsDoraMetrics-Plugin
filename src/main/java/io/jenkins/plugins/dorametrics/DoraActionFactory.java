@@ -1,41 +1,30 @@
 package io.jenkins.plugins.dorametrics;
 
 import hudson.Extension;
-import hudson.model.AbstractProject;
 import hudson.model.Action;
+import hudson.model.Item;
 import hudson.model.Job;
-import hudson.model.TransientProjectActionFactory;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import jenkins.model.TransientActionFactory;
 
 /**
  * Factory class that attaches the DORA Metrics action to Jenkins jobs.
- * By extending TransientProjectActionFactory, we dynamically attach our action to all projects.
+ * Uses TransientActionFactory to dynamically attach actions to all job types.
  */
 @Extension
-public class DoraActionFactory extends TransientProjectActionFactory {
+public class DoraActionFactory extends TransientActionFactory<Job> {
 
-
-    /**
-     * Specifies the type of jobs this action should be attached to.
-     * 
-     * @return Job.class to ensure the action runs on all job types (Pipeline, Freestyle, etc.)
-     */
-    public Class<? extends Job> type() {
+    @Override
+    public Class<Job> type() {
         return Job.class;
     }
 
-
-
-    /**
-     * Creates and attaches the DoraMetricsAction to the specified target project.
-     * 
-     * @param target The Jenkins project
-     * @return A collection containing our custom action
-     */
     @Override
-    public Collection<? extends Action> createFor(AbstractProject target) {
+    public Collection<? extends Action> createFor(Job target) {
+        if (target == null || !target.hasPermission(Item.READ)) {
+            return Collections.emptyList();
+        }
         return Collections.singleton(new DoraMetricsAction(target));
     }
 }

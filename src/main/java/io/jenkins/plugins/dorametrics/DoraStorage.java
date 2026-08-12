@@ -1,11 +1,13 @@
 package io.jenkins.plugins.dorametrics;
 
 import hudson.Extension;
-import hudson.model.Descriptor;
 import hudson.model.Describable;
-import jenkins.model.Jenkins;
+import hudson.model.Descriptor;
 import java.util.HashMap;
 import java.util.Map;
+import jenkins.model.Jenkins;
+import org.kohsuke.accmod.Restricted;
+import org.kohsuke.accmod.restrictions.NoExternalUse;
 
 /**
  * Persistent storage for DORA Metrics.
@@ -45,18 +47,20 @@ public class DoraStorage extends Descriptor<DoraStorage> implements Describable<
     /**
      * Helper method to get or initialize metrics for a given project.
      */
+    @Restricted(NoExternalUse.class)
     private synchronized ProjectMetrics getOrCreateMetrics(String projectName) {
         return projectMetricsMap.computeIfAbsent(projectName, k -> new ProjectMetrics());
     }
 
     /**
      * Records a build execution and updates the accumulated metrics.
-     * 
+     *
      * @param projectName Name of the Jenkins project
      * @param isSuccess True if the build succeeded, false otherwise
      * @param duration Execution time of the build in milliseconds
      * @param timestamp Completion timestamp of the build
      */
+    @Restricted(NoExternalUse.class)
     public synchronized void recordBuild(String projectName, boolean isSuccess, long duration, long timestamp) {
         ProjectMetrics metrics = getOrCreateMetrics(projectName);
         metrics.totalDeployments++;
@@ -82,10 +86,10 @@ public class DoraStorage extends Descriptor<DoraStorage> implements Describable<
         save();
     }
 
-
     /**
      * Returns the count of successful deployments.
      */
+    @Restricted(NoExternalUse.class)
     public synchronized int getSuccessfulDeployments(String projectName) {
         ProjectMetrics m = projectMetricsMap.get(projectName);
         return m != null ? (m.totalDeployments - m.failedDeployments) : 0;
@@ -94,6 +98,7 @@ public class DoraStorage extends Descriptor<DoraStorage> implements Describable<
     /**
      * Returns the Change Failure Rate as a percentage.
      */
+    @Restricted(NoExternalUse.class)
     public synchronized double getChangeFailureRate(String projectName) {
         ProjectMetrics m = projectMetricsMap.get(projectName);
         if (m == null || m.totalDeployments == 0) return 0.0;
@@ -103,21 +108,25 @@ public class DoraStorage extends Descriptor<DoraStorage> implements Describable<
     /**
      * Returns the Mean Lead Time in minutes.
      */
+    @Restricted(NoExternalUse.class)
     public synchronized double getMeanLeadTimeMinutes(String projectName) {
         ProjectMetrics m = projectMetricsMap.get(projectName);
         if (m == null || m.totalDeployments == 0) return 0.0;
-        return (double) (m.totalLeadTime / m.totalDeployments) / (1000 * 60);
+        return ((double) m.totalLeadTime / m.totalDeployments) / (1000.0 * 60.0);
     }
 
     /**
      * Returns the Mean Time to Recovery (MTTR) in minutes.
      */
+    @Restricted(NoExternalUse.class)
     public synchronized double getMeanTimeToRecoveryMinutes(String projectName) {
         ProjectMetrics m = projectMetricsMap.get(projectName);
         if (m == null || m.recoveryCount == 0) return 0.0;
-        return (double) (m.totalRecoveryTime / m.recoveryCount) / (1000 * 60);
+        return ((double) m.totalRecoveryTime / m.recoveryCount) / (1000.0 * 60.0);
     }
 
     @Override
-    public String getDisplayName() { return "DORA Storage Configuration"; }
+    public String getDisplayName() {
+        return "DORA Storage Configuration";
+    }
 }

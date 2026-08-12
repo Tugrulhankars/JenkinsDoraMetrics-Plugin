@@ -14,14 +14,14 @@ public class DoraMetricsListener extends RunListener<Run<?, ?>> {
 
     /**
      * Called when a build completes. Collects necessary data and stores it.
-     * 
+     *
      * @param run The build/run that just completed
      * @param listener The task listener for logging output
      */
     @Override
     public void onCompleted(Run<?, ?> run, TaskListener listener) {
         // The full name of the project in Jenkins
-        String projectName = run.getParent().getFullName(); 
+        String projectName = run.getParent().getFullName();
         boolean isSuccess = (run.getResult() == hudson.model.Result.SUCCESS);
         long duration = run.getDuration();
         long endTimestamp = System.currentTimeMillis();

@@ -2,8 +2,8 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/form">
     <l:layout title="DORA Metrics Dashboard">
         <l:main-panel>
-            <!-- Chart.js -->
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <!-- Chart.js loaded locally to comply with Content Security Policy (CSP) -->
+            <script src="${resURL}/plugin/dorametrics/js/chart.min.js"></script>
 
             <div style="padding: 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8f9fa; color: #212529; min-height: 100vh; border-radius: 8px;">
 
